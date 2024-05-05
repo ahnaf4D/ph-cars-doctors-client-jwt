@@ -12,7 +12,9 @@ const PrivateRoute = ({ children }) => {
   if (user?.email) {
     return children;
   }
-  return <Navigate to='/login' replace={true}></Navigate>;
+  return (
+    <Navigate to='/login' state={location.pathname} replace={true}></Navigate>
+  );
 };
 
 export default PrivateRoute;
