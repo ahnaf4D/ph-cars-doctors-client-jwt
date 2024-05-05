@@ -19,10 +19,14 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const user = { email };
-        // navigate(location?.state ? `${location.state}` : '/');
         axios
           .post('http://localhost:3000/jwt', user, { withCredentials: true })
-          .then((data) => console.log(data.data));
+          .then((data) => {
+            console.log(data.data);
+            if (data.data.success) {
+              navigate(location?.state ? `${location.state}` : '/');
+            }
+          });
       })
       .catch((error) => console.log(error));
   };
